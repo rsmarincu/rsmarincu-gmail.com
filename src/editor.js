@@ -11,13 +11,22 @@ import KeyboardPlugin from 'rete-keyboard-plugin';
 import { NumComponent } from './components/NumComponent'
 import { AddComponent } from './components/AddComponent'
 import { DivideComponent } from './components/DivideComponent'
-import { TextViewComponent } from "./components/TextViewComponent";
 import { TextComponent } from "./components/TextComponents";
+import { GetComponent } from "./components/GetComponent";
+import { PanelComponent } from "./components/PanelComponent";
+
 
 
 export async function createFlowEditor (){
     var container = document.querySelector('#rete');
-    var components = [new NumComponent(), new AddComponent(), new DivideComponent(), new TextComponent(), new TextViewComponent()];
+    var components = [
+        new NumComponent(), 
+        new AddComponent(), 
+        new DivideComponent(),
+        new TextComponent(),  
+        new GetComponent(),
+        new PanelComponent()
+    ];
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
     editor.use(ConnectionPlugin);
@@ -50,8 +59,9 @@ export async function createFlowEditor (){
     editor.addNode(n2);
     editor.addNode(add);
 
-    editor.connect(n1.outputs.get('num'), add.inputs.get('num'));
-    editor.connect(n2.outputs.get('num'), add.inputs.get('num2'));
+
+    editor.connect(n1.outputs.get('num'), add.inputs.get('addInp1'));
+    editor.connect(n2.outputs.get('num'), add.inputs.get('addInp2'));
 
 
     editor.on('process nodecreated noderemoved connectioncreated connectionremoved', async () => {

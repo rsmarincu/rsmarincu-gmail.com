@@ -1,10 +1,13 @@
 import Rete from "rete"
 import { NumControl } from '../controls/NumControl'
 import { numSocket } from '../sockets'
+import component from '../vue-components/Custom.vue';
 
 export class NumComponent extends Rete.Component {
     constructor(){
         super("Number");
+        this.data.component = component;
+
     }
 
     builder(node) {

@@ -1,10 +1,12 @@
 import Rete from 'rete'
 import { textSocket } from '../sockets'
 import { TextControl } from '../controls/TextControl'
+import component from '../vue-components/Custom.vue';
 
 export class TextComponent extends Rete.Component {
     constructor(){
         super("Text");
+        this.data.component = component;
     }
 
     builder(node) {

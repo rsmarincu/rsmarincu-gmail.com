@@ -1,5 +1,5 @@
 <template>
-    <textarea 
+    <textarea
     :readonly="readonly" 
     :value="value"
     @input="change($event)" 

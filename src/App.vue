@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div id="rete" ref="rete"></div>
+        <div id="rete" ref="rete" class="node-editor"></div>
     </div>
 </template>
 
@@ -23,4 +23,5 @@ export default {
     #rete {
         height: 100em;
     }
+
 </style>
