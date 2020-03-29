@@ -32,10 +32,14 @@ export default {
 };
 </script>
 
-<style scoped>
-    textarea {
-        height: 100%;
-        width: 100%;
-        border-radius: 10px;
-    }
+<style scoped lang="sass">
+
+$light-grey: #E0E6ED
+
+textarea 
+    height: 100%
+    width: 100%
+    border: 1px solid $light-grey
+    border-radius: 5px
+
 </style>

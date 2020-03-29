@@ -43,6 +43,8 @@ $socket-size: 20px
 $socket-margin: 10px
 $context-menu-round: 7px
 $light-grey: #E0E6ED
+$path-color: #0084FF
+
 
 .node-editor
   .node
@@ -97,6 +99,7 @@ $light-grey: #E0E6ED
       z-index: 2
       box-sizing: border-box
       &:hover
+        border: solid $path-color
         border-width: 4px
       &.multiple
         border-color: yellow

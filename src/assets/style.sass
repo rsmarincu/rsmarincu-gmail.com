@@ -1,7 +1,11 @@
 $grid-size: 75px
 $grid-color: darken(white,10%)
 $light-grey: #E0E6ED
-
+$context-menu-round: 7px
+$node-color: rgba(35,35,35,0.7)
+$light-grey: #E0E6ED
+$title-light: grey
+$path-color: #0084FF
 
 .node-editor
   background-size: $grid-size $grid-size
@@ -12,7 +16,7 @@ $light-grey: #E0E6ED
     box-sizing: border-box
   .connection path
     fill: none
-    stroke: #0084FF
+    stroke: $path-color
     stroke-width: 3px
     pointer-events: none
     &.active
@@ -23,6 +27,47 @@ $light-grey: #E0E6ED
     background-color: transparent
     padding: 2px 2px
     border: 1px solid $light-grey
+    border-radius: 5px
     font-size: 14px
     color: black
-    border-radius: 0
+    border-radius: 5px
+    
+.context-menu
+  left: 0
+  top: 0
+  position: absolute
+  padding: 10px
+  margin-top: -20px
+  & > .item
+    .subitems
+      position: absolute
+      display: none
+      left: 100%
+      top: 0
+      border-radius: $context-menu-round
+      overflow: overlay
+    &:hover .subitems
+      display: block
+    &.have-subitems
+      padding-right: 16px
+      &:after
+        content: '►'
+        position: absolute
+        opacity: 0.6
+        right: 5px
+        top: 5px
+  .item
+    padding: 4px
+    border-bottom: 1px solid darken($node-color,8%)
+    color: black
+    background-color: $light-grey
+    cursor: pointer
+    width: 100px
+    position: relative
+    &:first-child
+      border-radius: $context-menu-round $context-menu-round 0 0
+    &:last-child
+      border-radius: 0 0 $context-menu-round $context-menu-round
+    &:hover
+      background-color: lighten($node-color,4%)
+      

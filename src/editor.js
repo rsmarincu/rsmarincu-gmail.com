@@ -14,7 +14,7 @@ import { DivideComponent } from './components/DivideComponent'
 import { TextComponent } from "./components/TextComponents";
 import { GetComponent } from "./components/GetComponent";
 import { PanelComponent } from "./components/PanelComponent";
-
+// import { CustomContextMenu } from "./context-menu"
 
 
 export async function createFlowEditor (){
