@@ -7,7 +7,6 @@ export class NumComponent extends Rete.Component {
     constructor(){
         super("Number");
         this.data.component = component;
-
     }
 
     builder(node) {
