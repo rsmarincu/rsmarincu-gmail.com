@@ -1,5 +1,5 @@
 import Rete from 'rete'
-import { textSocket } from '../sockets'
+import { listSocket } from '../sockets'
 import component from '../vue-components/Custom.vue';
 import { ListControl } from '../controls/ListControl'
 
@@ -12,8 +12,8 @@ export class ListComponent extends Rete.Component {
     }
   
     builder(node){
-      var inp = new Rete.Input("items", "Items", textSocket, true);
-      var out = new Rete.Output("selected", "Selected", textSocket);
+      var inp = new Rete.Input("items", "Items", listSocket, true);
+      var out = new Rete.Output("selected", "Selected", listSocket);
   
       return node
         .addInput(inp)
@@ -23,7 +23,7 @@ export class ListComponent extends Rete.Component {
   
       worker(node, inputs, outputs) {
         const items = inputs['items']
-        this.editor.nodes.find(n => n.id == node.id).controls.get('preview').setOptions(items)
+        this.editor.nodes.find(n => n.id == node.id).controls.get('preview').setOptions(items.flat())
         
         outputs['selected'] = this.editor.nodes.find(n => n.id == node.id).controls.get('preview').getValue()
 

@@ -5,6 +5,7 @@
         :options="options"
         :multiple="true"
         :hide-selected="true"
+        :closeOnSelect="false"
         @select="update"
         @remove="update">
     <template 

@@ -29,7 +29,7 @@ export class GetLabelsComponent extends Rete.Component {
         formData.append('labels','PassengerId')
 
         try {
-            const resp = await Axios.post('http://localhost:3000/columns/',
+            const resp = await Axios.post('http://localhost:3000/labels/',
                 formData,
                 {
                     headers: {
@@ -37,8 +37,8 @@ export class GetLabelsComponent extends Rete.Component {
                         'Content-Type': 'application/json'
                     }
                 })
-            outputs['result'] = JSON.stringify(resp.data, undefined, 4);
-        } catch (error ){
+            outputs['result'] = JSON.parse(resp.data)
+        } catch (error){
             outputs['result'] = ""
         }
     }
