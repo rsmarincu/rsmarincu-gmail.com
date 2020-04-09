@@ -3,7 +3,10 @@ module.exports = {
      devServer: {
           port: 9000,
           hot: true,
-          liveReload: true
+          liveReload: true,
+          watchOptions: {
+               poll: true
+             }
         }
     }
 

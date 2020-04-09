@@ -15,6 +15,9 @@ import { TextComponent } from "./components/TextComponents";
 import { GetComponent } from "./components/GetComponent";
 import { PanelComponent } from "./components/PanelComponent";
 import { FileComponent } from "./components/FileComponent";
+import { GetLabelsComponent } from "./components/GetLabelsComponent";
+import { ListComponent } from "./components/ListComponent";
+
 // import { CustomContextMenu } from "./context-menu"
 
 
@@ -27,7 +30,9 @@ export async function createFlowEditor (){
         new TextComponent(),  
         new GetComponent(),
         new PanelComponent(),
-        new FileComponent()
+        new FileComponent(),
+        new GetLabelsComponent(),
+        new ListComponent()
     ];
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
