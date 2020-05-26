@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 export class HistogramComponent extends Rete.Component {
     constructor() {
-      super("BarPlot");
+      super("Histogram");
       this.data.component = component;
     }
   
