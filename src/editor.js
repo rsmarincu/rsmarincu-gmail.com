@@ -17,7 +17,7 @@ import { PanelComponent } from "./components/PanelComponent";
 import { FileComponent } from "./components/FileComponent";
 import { GetLabelsComponent } from "./components/GetLabelsComponent";
 import { ListComponent } from "./components/ListComponent";
-import { BarPlotComponent } from "./components/BarPlotComponent";
+import { HistogramComponent } from "./components/HistogramComponent";
 
 
 export async function createFlowEditor (){
@@ -32,7 +32,7 @@ export async function createFlowEditor (){
         new FileComponent(),
         new GetLabelsComponent(),
         new ListComponent(),
-        new BarPlotComponent()
+        new HistogramComponent()
     ];
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);

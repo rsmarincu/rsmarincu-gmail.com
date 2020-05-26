@@ -17,7 +17,7 @@ export class FileComponent extends Rete.Component {
             .addOutput(out)
     }
 
-    worker(node, inputs, outputs) {        
+    worker(node, inputs, outputs) {     
         outputs['fileOut'] = node.data.fileOut;
     }
 }

@@ -4,38 +4,39 @@ import component from '../vue-components/Custom.vue';
 import { ImageControl } from '../controls/ImageControl'
 import Axios from 'axios';
 
-export class BarPlotComponent extends Rete.Component {
+export class HistogramComponent extends Rete.Component {
     constructor() {
       super("BarPlot");
       this.data.component = component;
     }
   
     builder(node){
-      var dataset = new Rete.Input("dataset", "Dataset", datasetSocket);
-      var x_axis = new Rete.Input("x_axis", "X Axis", listSocket);
-      var y_axis = new Rete.Input("y_axis", "Y Axis", listSocket);
-
-      var out = new Rete.Output("selected", "Selected", listSocket);
+      let dataset = new Rete.Input("dataset", "Dataset", datasetSocket);
+      let x_axis = new Rete.Input("x_axis", "X Axis", listSocket);
+      let out = new Rete.Output("selected", "Selected", listSocket);
   
       return node
         .addInput(dataset)
         .addInput(x_axis)
-        .addInput(y_axis)
         .addControl(new ImageControl(this.editor, 'preview', true))
         .addOutput(out)
       }
   
       async worker(node, inputs, outputs) {
-        // const dataset = inputs['dataset']
-        // const x_axis = inputs['x_axis']
-        // const y_axis = input['y_axis']
+        
+        let file = inputs['dataset'][0]
+        let x_axis = inputs['x_axis'][0]
+
+        let formData = new FormData();
+        formData.append('file', file);
+        formData.append('x-axis', x_axis)
 
         try {
-            const resp = await Axios.get('https://picsum.photos/id/237/200/300', {
+            const resp = await Axios.post('https://fluxusml.azurewebsites.net/visualisation/histogram/', formData, {
                 responseType: 'blob'
             })
             console.log(resp)
-
+            
             this.editor.nodes.find(n => n.id == node.id).controls.get('preview').setImageUrl(resp.data)
             outputs['result'] = URL.createObjectURL(resp.data)
         } catch (error){

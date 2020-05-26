@@ -21,25 +21,19 @@ export class GetLabelsComponent extends Rete.Component {
     }
 
     async worker(node, inputs, outputs) {
-
+     
         var file = inputs['fileIn'].length?inputs['fileIn'][0]:node.data.fileIn;
-        let formData = new FormData();
-
-        formData.append('file', file);
-        formData.append('labels','PassengerId')
-
-        try {
-            const resp = await Axios.post('http://localhost:3000/labels/',
-                formData,
-                {
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json'
-                    }
-                })
-            outputs['result'] = JSON.parse(resp.data)
-        } catch (error){
-            outputs['result'] = ""
+        if (file)
+        {
+            let formData = new FormData();
+            formData.append('file', file);
+            try {
+                const resp = await Axios.post('https://fluxusml.azurewebsites.net/pandas/labels/',
+                    formData)
+                outputs['result'] = resp.data
+            } catch (error){
+                outputs['result'] = ""
+            }
         }
     }
 }

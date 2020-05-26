@@ -13,15 +13,15 @@ export default {
 
     data() {
         return {
-            value: 0,
-            file: ''
+            value: null,
+            file: null
         }
     },
     methods: {
         update() {
         if (this.ikey)
             this.putData(this.ikey, this.value)
-            this.emitter.trigger('process');
+        this.emitter.trigger('process');
         },
 
         handleFileUpload(){
