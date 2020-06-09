@@ -3,16 +3,17 @@ import { numSocket } from '../sockets'
 import component from '../vue-components/Custom.vue';
 import Axios from 'axios';
 
-export class DivideComponent extends Rete.Component {
-    constructor(){
-        super("Divide");
-        this.data.component = component;
 
+export class SubtractComponent extends Rete.Component {
+    constructor(){
+        super("Subtract");
+        this.data.component = component;
     }
+
     builder(node) {
-        var inp1 = new Rete.Input('divInp1',"Number", numSocket, true);
-        var inp2 = new Rete.Input('divInp2', "Number2", numSocket, true);
-        var out = new Rete.Output('divOut', "Number", numSocket);
+        var inp1 = new Rete.Input('subInp1',"Number", numSocket, true);
+        var inp2 = new Rete.Input('subInp2', "Number2", numSocket, true);
+        var out = new Rete.Output('subOut', "Number", numSocket);
 
         return node
             .addInput(inp1)
@@ -21,20 +22,20 @@ export class DivideComponent extends Rete.Component {
     }
 
     async worker(node, inputs, outputs) {
-        var n1 = inputs['divInp1'].flat()
-        var n2 = inputs['divInp2'].flat()
+        var n1 = inputs['subInp1'].flat()
+        var n2 = inputs['subInp2'].flat()
         let sum = null;
 
         try {
-            const resp = await Axios.post('https://fluxusml.azurewebsites.net/math/divide/', {
+            const resp = await Axios.post('https://fluxusml.azurewebsites.net/math/subtract/', {
                 as: n1,
                 bs: n2
             })
             sum = resp.data
         } catch (error){
-            outputs['divOut'] = null
+            outputs['subOut'] = null
         }
         
-        outputs['divOut'] = sum;
+        outputs['subOut'] = sum;
     }
 }

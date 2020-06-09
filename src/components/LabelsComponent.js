@@ -5,7 +5,7 @@ import component from '../vue-components/Custom.vue';
 import Axios from 'axios';
 
 
-export class GetLabelsComponent extends Rete.Component {
+export class LabelsComponent extends Rete.Component {
     constructor(){
         super("Labels");
         this.data.component = component;

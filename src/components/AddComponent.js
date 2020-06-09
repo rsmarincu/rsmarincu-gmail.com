@@ -1,7 +1,7 @@
 import Rete from 'rete'
-import { NumControl } from '../controls/NumControl'
 import { numSocket } from '../sockets'
 import component from '../vue-components/Custom.vue';
+import Axios from 'axios';
 
 
 export class AddComponent extends Rete.Component {
@@ -11,23 +11,48 @@ export class AddComponent extends Rete.Component {
     }
 
     builder(node) {
-        var inp1 = new Rete.Input('addInp1',"Number", numSocket);
-        var inp2 = new Rete.Input('addInp2', "Number2", numSocket);
+        var inp1 = new Rete.Input('addInp1',"Number", numSocket, true);
+        var inp2 = new Rete.Input('addInp2', "Number2", numSocket, true);
         var out = new Rete.Output('addOut', "Number", numSocket);
 
         return node
             .addInput(inp1)
             .addInput(inp2)
-            .addControl(new NumControl(this.editor, 'preview', true))
             .addOutput(out);
     }
 
-    worker(node, inputs, outputs) {
-        var n1 = inputs['addInp1'].length?inputs['addInp1'][0]:node.data.addInp1;
-        var n2 = inputs['addInp2'].length?inputs['addInp2'][0]:node.data.addInp2;
-        var sum = n1 + n2;
-        
-        this.editor.nodes.find(n => n.id == node.id).controls.get('preview').setValue(sum);
+    async worker(node, inputs, outputs) {
+        let n1 = inputs['addInp1'].flat()
+        let n2 = inputs['addInp2'].flat()
+        let sum = null;
+        if (n1[0].constructor === File)
+        {         
+            console.log("not array")
+            try {
+                let formData = new FormData();
+                formData.append('file', n1[0]);
+                formData.append('bs', n2);
+                const resp = await Axios.post('https://fluxusml.azurewebsites.net/math/add/',
+                                            formData, 
+                                            {responseType: 'blob'})
+                sum = new File([resp.data], "export.csv")
+            } catch (error){
+                outputs['addOut'] = null
+            }
+        }
+        else 
+        {
+            try {
+                const resp = await Axios.post('https://fluxusml.azurewebsites.net/math/add/', {
+                    as: n1,
+                    bs: n2
+                })
+                sum = resp.data
+            } catch (error){
+                outputs['addOut'] = null
+            }
+        }
+        console.log(sum)
         outputs['addOut'] = sum;
     }
 }

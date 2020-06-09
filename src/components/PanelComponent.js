@@ -12,7 +12,7 @@ export class PanelComponent extends Rete.Component {
     }
     builder(node) {
 
-        var inp = new Rete.Input('panelInput',"Text", textSocket);
+        var inp = new Rete.Input('panelInput',"Text", textSocket, true);
         var out = new Rete.Output('panelOut',"Text", textSocket);
 
         return node

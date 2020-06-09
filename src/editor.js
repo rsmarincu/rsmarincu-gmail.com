@@ -15,9 +15,12 @@ import { TextComponent } from "./components/TextComponents";
 import { GetComponent } from "./components/GetComponent";
 import { PanelComponent } from "./components/PanelComponent";
 import { FileComponent } from "./components/FileComponent";
-import { GetLabelsComponent } from "./components/GetLabelsComponent";
+import { LabelsComponent } from "./components/LabelsComponent";
 import { ListComponent } from "./components/ListComponent";
 import { HistogramComponent } from "./components/HistogramComponent";
+import { MultiplyComponent } from "./components/MultiplyComponent";
+import { SubtractComponent } from "./components/SubtractComponent";
+import { ColumnsComponent } from "./components/ColumnsComponents";
 
 
 export async function createFlowEditor (){
@@ -25,14 +28,17 @@ export async function createFlowEditor (){
     var components = [
         new NumComponent(), 
         new AddComponent(), 
-        new DivideComponent(),
+        new DivideComponent(), 
+        new MultiplyComponent(),
+        new SubtractComponent(),
         new TextComponent(),  
         new GetComponent(),
         new PanelComponent(),
         new FileComponent(),
-        new GetLabelsComponent(),
+        new LabelsComponent(),
         new ListComponent(),
-        new HistogramComponent()
+        new HistogramComponent(),
+        new ColumnsComponent()
     ];
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
@@ -58,20 +64,17 @@ export async function createFlowEditor (){
     var add = await components[1].createNode();
 
     var dataset = await new FileComponent().createNode()
-    var labels = await new GetLabelsComponent().createNode()
 
     n1.position = [80, 200];
     n2.position = [80, 400];
     add.position = [500, 240];
     dataset.position = [0,0]
-    labels.position = [100,150]
  
 
     editor.addNode(n1);
     editor.addNode(n2);
     editor.addNode(add);
     editor.addNode(dataset)
-    editor.addNode(labels)
 
 
     editor.connect(n1.outputs.get('num'), add.inputs.get('addInp1'));
