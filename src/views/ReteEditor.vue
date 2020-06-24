@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { createFlowEditor } from './editor.js'
+import { createFlowEditor } from '../editor.js'
 export default {
     mounted(){
         createFlowEditor();

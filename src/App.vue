@@ -1,24 +1,20 @@
 <template>
-    <div id="rete-app">
-        <div id="rete" ref="rete" class="node-editor"></div>
-    </div>
+  <v-app class="grey lighten-4">
+
+    <v-content class="mx-4 mb-4">
+      <router-view></router-view>
+    </v-content>
+    
+  </v-app>
 </template>
 
 <script>
-import { createFlowEditor } from './editor.js'
 export default {
-    mounted(){
-        createFlowEditor();
+  name: 'App',
+  data () {
+    return {
+      
     }
+  }
 }
 </script>
-
-<style scoped>
-    #rete-app { 
-        width: 100%;
-        height: 100%;
-    }
-    #rete {
-        height: 100em;
-    }
-</style>
