@@ -1,12 +1,14 @@
 module.exports = {
-     runtimeCompiler: true, 
-     devServer: {
-          port: 9000,
-          hot: true,
-          liveReload: true,
-          watchOptions: {
-               poll: true
-             }
-        }
+  "runtimeCompiler": true,
+  "devServer": {
+    "port": 9000,
+    "hot": true,
+    "liveReload": true,
+    "watchOptions": {
+      "poll": true
     }
-
+  },
+  "transpileDependencies": [
+    "vuetify"
+  ]
+}
