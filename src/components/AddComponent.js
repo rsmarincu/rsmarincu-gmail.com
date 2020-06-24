@@ -12,7 +12,7 @@ export class AddComponent extends Rete.Component {
 
     builder(node) {
         var inp1 = new Rete.Input('addInp1',"Number", numSocket, true);
-        var inp2 = new Rete.Input('addInp2', "Number", numSocket, true);
+        var inp2 = new Rete.Input('addInp2', "Number2", numSocket, true);
         var out = new Rete.Output('addOut', "Number", numSocket);
 
         return node

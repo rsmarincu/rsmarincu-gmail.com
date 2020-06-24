@@ -6,8 +6,6 @@ var packageSocket = new Socket("Package")
 var datasetSocket = new Socket("Dataset")
 var listSocket = new Socket("List")
 
-
-
 listSocket.combineWith(textSocket, numSocket, datasetSocket)
 textSocket.combineWith(listSocket, numSocket, datasetSocket)
 textSocket.combineWith(datasetSocket)
