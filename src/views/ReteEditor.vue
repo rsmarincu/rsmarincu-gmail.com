@@ -1,5 +1,5 @@
 <template>
-    <div id="rete-app">
+    <div id="app">
         <div id="rete" ref="rete" class="node-editor"></div>
     </div>
 </template>
@@ -13,12 +13,11 @@ export default {
 }
 </script>
 
-<style scoped>
-    #rete-app { 
-        width: 100%;
-        height: 100%;
-    }
-    #rete {
-        height: 100em;
-    }
+<style lang="sass" scoped>
+
+#app
+    width: 100%
+    height: 100%
+#rete
+    height: 100em
 </style>

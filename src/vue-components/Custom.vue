@@ -1,7 +1,7 @@
 <template>
   <div class="node" :class="[selected(), node.name] | kebab">
     <div class="title">{{node.name}}</div>
-    <div class="col">
+    <div class="col_">
       <div class="output" v-for="output in outputs()" :key="output.key">
         <div class="output-title">{{output.name}}</div>
         <Socket v-socket:output="output" type="output" :socket="output.socket" :used="() => output.connections.length"></Socket>
@@ -9,7 +9,7 @@
     </div>
 
     <div class="control" v-bind:key="control.key" v-for="control in controls()" v-control="control"></div>
-    <div class="col">
+    <div class="col_">
         <div class="input" v-for="input in inputs()" :key="input.key" style="text-align: left">
         <Socket v-socket:input="input" type="input" :socket="input.socket" :used="() => input.connections.length"></Socket>
         <div class="input-title" v-show="!input.showControl()">{{input.name}}</div>
@@ -30,8 +30,7 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-
+<style scoped lang="sass">
 $node-color: white
 $color-active: darken($node-color,5%)
 $title-light: grey
@@ -44,8 +43,6 @@ $socket-margin: 10px
 $context-menu-round: 7px
 $light-grey: #E0E6ED
 $path-color: #0084FF
-
-
 .node-editor
   .node
     background: $node-color
