@@ -1,12 +1,11 @@
-  
-let express = require('express');
-let path = require('path');
-let serverStatic = require('serve-static');
-
+var express = require('express');
+var path = require('path');
+var serveStatic = require('serve-static');
 app = express();
-app.use(serverStatic(__dirname + '/dist'));
+app.use(serveStatic(__dirname + "/dist"));
+var port = process.env.PORT || 5000;
+var hostname = '127.0.0.1';
 
-let port = process.env.PORT || 5000;
-app.listen(port);
-
-console.log('server started on port: ' + port);
+app.listen(port, hostname, () => {
+   console.log(`Server running at http://${hostname}:${port}/`);
+ });
