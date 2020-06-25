@@ -6,6 +6,6 @@ app.use(serveStatic(__dirname + "/dist"));
 var port = process.env.PORT || 5000;
 var hostname = 'localhost';
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
    console.log(`Server running at http://${hostname}:${port}/`);
  });
