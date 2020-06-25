@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import ReteEditor from './views/ReteEditor.vue'
+import Editor from './views/Editor.vue'
+import About from './views/About.vue'
 
 Vue.use(Router)
 
@@ -17,7 +18,12 @@ export default new Router({
     {
       path: '/editor',
       name: 'editor',
-      component: ReteEditor
-    }
+      component: Editor
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
   ]
 })
