@@ -1,8 +1,18 @@
-var express = require('express');
-var path = require('path');
-var serveStatic = require('serve-static');
+let express = require('express');
+let history = require('connect-history-api-fallback');
+let path = require('path');
+let serveStatic = require('serve-static');
+let staticFileMiddleware = express.static(__dirname + "/dist")
+
 app = express();
-app.use(serveStatic(__dirname + "/dist"));
+
+app.use(staticFileMiddleware)
+app.use(history({
+  disableDotRule: true,
+  verbose: true
+}))
+app.use(staticFileMiddleware)
+
 var port = process.env.PORT || 5000;
 var hostname = 'localhost';
 
