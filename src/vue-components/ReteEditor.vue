@@ -19,4 +19,5 @@ export default {
     height: 100%
 #rete
     height: 100em
+    overflow: visible !important
 </style>

@@ -9,7 +9,7 @@
         </v-flex>
         <v-flex class="pt-5 xs-4 md-6">
           <v-spacer></v-spacer>
-          <img src="@/assets/undraw_data_processing_yrrv.svg" alt="">
+          <img src="@/assets/undraw_data_processing_yrrv.svg" alt />
         </v-flex>
       </v-layout>
     </v-container>

@@ -1,7 +1,7 @@
 import Rete from 'rete'
 import { FileControl } from '../controls/FileControl'
 import { datasetSocket } from '../sockets'
-import component from '../vue-components/Custom.vue';
+import component from '../vue-components/FileComponent.vue';
 
 export class FileComponent extends Rete.Component {
     constructor(){

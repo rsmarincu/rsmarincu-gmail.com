@@ -55,7 +55,8 @@ $path-color: #0084FF
     height: auto
     padding-bottom: 6px
     box-sizing: content-box
-    min-width: 160px
+    min-width: 350px
+    position: static
     &:hover
       background: $node-color
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)

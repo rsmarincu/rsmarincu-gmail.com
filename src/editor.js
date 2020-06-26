@@ -21,6 +21,8 @@ import { HistogramComponent } from "./components/HistogramComponent";
 import { MultiplyComponent } from "./components/MultiplyComponent";
 import { SubtractComponent } from "./components/SubtractComponent";
 import { ColumnsComponent } from "./components/ColumnsComponents";
+import Vuetify from "vuetify/lib";
+import store from "@/store"
 
 
 export async function createFlowEditor (){
@@ -43,7 +45,12 @@ export async function createFlowEditor (){
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
     editor.use(ConnectionPlugin);
-    editor.use(VueRenderPlugin);    
+    editor.use(VueRenderPlugin, {
+        options: {
+            vuetify: new Vuetify(),
+            store
+        }
+    });    
     editor.use(AreaPlugin);
     editor.use(CommentPlugin);
     editor.use(HistoryPlugin);
