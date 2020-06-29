@@ -6,6 +6,11 @@ Vue.use(Vuetify);
 export default new Vuetify({
     iconfont: 'md',
     theme:{
-        dark: false
-    }
+        dark: false,
+        themes: {
+            light: {
+                accent: "#42A2FB",
+            },
+        },
+    },
 });
