@@ -49,9 +49,9 @@ export default {
 
 <style lang="sass" scoped>
 h1
-  font-size: 5em
+  font-size: 5rem
 h2
-  font-size: 3em
+  font-size: 3rem
 .home-fluxus
   background: url("../assets/Waves.svg")
   background-repeat: no-repeat

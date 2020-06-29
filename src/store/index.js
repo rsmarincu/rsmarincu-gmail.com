@@ -44,8 +44,8 @@ export default new Vuex.Store({
             state.editor = editor
         },
 
-        SET_LOADING(state, loading) {
-            state.loading = loading
+        SET_FLUX(state, file) {
+            state.flux_file = file
         }
 
 

@@ -123,7 +123,6 @@ export default {
     update_datasets() {
       this.overlay = !this.overlay;
       this.datasets = this.$store.getters.datasets;
-      console.log(this.datasets);
     },
     get_dataset(id) {
       this.to_view = this.$store.getters.dataset(id);
@@ -150,7 +149,7 @@ export default {
     },
     handleFlowUpload(e) {
       let file = e.target.files[0];
-      this.flow = file;
+      this.$store.commit("SET_FLUX", file)
     }
   }
 };

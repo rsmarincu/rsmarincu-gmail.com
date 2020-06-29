@@ -42,6 +42,7 @@ export async function createFlowEditor (){
         new HistogramComponent(),
         new ColumnsComponent()
     ];
+    var reader = new FileReader()
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
     editor.use(ConnectionPlugin);
@@ -97,6 +98,18 @@ export async function createFlowEditor (){
 
     editor.view.resize();
     AreaPlugin.zoomAt(editor);
+
+    store.subscribe((mutation, state) => {
+        if (mutation.type === "SET_FLUX") {
+            let file = state.flux_file
+            reader.readAsText(file, "UTF-8")
+            reader.onloadend = function () {
+                editor.fromJSON(JSON.parse(reader.result))
+                editor.trigger('process')
+            }
+        }
+    })
+
     editor.trigger('process');
 
 }

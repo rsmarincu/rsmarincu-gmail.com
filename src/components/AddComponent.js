@@ -52,7 +52,6 @@ export class AddComponent extends Rete.Component {
                 outputs['addOut'] = null
             }
         }
-        console.log(sum)
         outputs['addOut'] = sum;
     }
 }
