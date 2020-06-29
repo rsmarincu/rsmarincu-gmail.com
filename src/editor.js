@@ -92,9 +92,11 @@ export async function createFlowEditor (){
       console.log('process');
         await engine.abort();
         await engine.process(editor.toJSON());
+        store.commit("SAVE_EDITOR", editor)
     });
 
     editor.view.resize();
     AreaPlugin.zoomAt(editor);
     editor.trigger('process');
+
 }

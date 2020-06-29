@@ -2,6 +2,8 @@
   <v-footer
     padless
     fixed
+    inset="true"
+    v-if="['home', 'about', 'documentation'].includes($route.name)"
   >
     <v-card
       class="flex"

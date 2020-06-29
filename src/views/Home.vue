@@ -1,38 +1,48 @@
   
 <template>
-    <v-container fluid fill-height>
-      <v-container fluid>
-        <v-row>
-          <v-col>
-            <v-row justify="start">
+  <v-container fluid fill-height class="home-fluxus pa-0 ma-0">
+    <v-container fill-height>
+      <v-row :align="align_start" class="x-row">
+        <v-col cols="12" md="8" xs="4">
+          <v-row justify="start">
             <h1>Unlock the power of your data.</h1>
-            <h3>Make informed decisions.</h3>
-            </v-row>
-          </v-col>
-          <v-col>
-            <v-row style="height: 150px" justify="center">
-              <h2>Data science:</h2>
-              <h3>radically simplified.</h3>
-            </v-row>
-          </v-col>
-        </v-row>
-      </v-container>
-      <v-row>
-        <v-btn rounded large color="accent">Example</v-btn>
-      </v-row>
-      <v-row  :align="align" style="height: 75%">
-        <v-img src="@/assets/Waves.svg" height="75%"  :aspect-ratio="ratio"></v-img>
+          </v-row>
+          <v-row align="center" justify="center">
+            <h2>Make informed decisions.</h2>
+            <v-btn rounded large @click="overlay = !overlay" color="accent" class="ma-10">
+              Demo
+              <v-icon>mdi-video</v-icon>
+            </v-btn>
+          </v-row>
+        </v-col>
       </v-row>
     </v-container>
+    <v-overlay :value="overlay">
+      <v-row justify="center" >
+        <v-btn icon @click="overlay = false" class="ma-10">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-row>
+      <v-row>
+        <iframe
+          width="1120"
+          height="630"
+          src="https://www.youtube.com/embed/LYlu7uS0UQY?controls=0&autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </v-row>
+    </v-overlay>
+  </v-container>
 </template>
 
 <script>
-
-
 export default {
   data: () => ({
-    align: "end",
-    ratio: 3840 / 1080
+    align_end: "end",
+    align_start: "start",
+    overlay: false
   })
 };
 </script>
@@ -40,5 +50,14 @@ export default {
 <style lang="sass" scoped>
 h1
   font-size: 5em
-
+h2
+  font-size: 3em
+.home-fluxus
+  background: url("../assets/Waves.svg")
+  background-repeat: no-repeat
+  background-attachment: fixed
+  background-position: bottom center
+  background-size: 175%
+.x-row
+  height: 100%
 </style>

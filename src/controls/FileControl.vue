@@ -42,12 +42,10 @@ export default {
     populateData(data, file){
       let headers = []
       let columns = Object.keys(data[0])
-      console.log(columns)
       for (let i in columns) {
           let header = { text: columns[i], value: columns[i]}
           headers.push(header)
       }
-      console.log(headers)
       let items = data
       let id = file.name
       let dataset = {

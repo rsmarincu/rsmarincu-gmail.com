@@ -27,7 +27,7 @@
             </router-link>
 
             <router-link style="text-decoration: none" to="/editor">
-                <v-btn outlined text color="grey" class="ma-1">
+                <v-btn outlined text color="accent" class="ma-1">
                 <span>Editor</span>
                 <v-icon right>mdi-exit-to-app</v-icon>
             </v-btn></router-link>

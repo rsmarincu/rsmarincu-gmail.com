@@ -6,6 +6,7 @@
 
 <script>
 import { createFlowEditor } from '../editor.js'
+
 export default {
     mounted(){
         createFlowEditor();
@@ -19,5 +20,5 @@ export default {
     height: 100%
 #rete
     height: 100em
-    overflow: visible !important
+    overflow: hidden
 </style>
