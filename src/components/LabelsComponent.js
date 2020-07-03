@@ -9,6 +9,7 @@ export class LabelsComponent extends Rete.Component {
     constructor(){
         super("Labels");
         this.data.component = component;
+        this.data.props = {icon: "mdi-label"}
     }
 
     builder(node) {

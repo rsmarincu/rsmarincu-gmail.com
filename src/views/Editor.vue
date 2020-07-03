@@ -4,7 +4,7 @@
     <v-navigation-drawer permanent fixed expand-on-hover app clipped left floating>
       <v-list>
         <v-list-item class="px-2" justify="center">
-          <v-list-item-avatar size="62" color="accent">
+          <v-list-item-avatar size="48" color="accent">
             <span class="white--text headline">RM</span>
           </v-list-item-avatar>
         </v-list-item>

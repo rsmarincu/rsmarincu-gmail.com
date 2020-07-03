@@ -8,6 +8,7 @@ export class MultiplyComponent extends Rete.Component {
     constructor(){
         super("Multiply");
         this.data.component = component;
+        this.data.props = {icon: "mdi-multiplication" }
     }
 
     builder(node) {

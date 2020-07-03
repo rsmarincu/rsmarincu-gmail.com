@@ -9,6 +9,7 @@ export class PanelComponent extends Rete.Component {
     constructor() {
         super("Panel");
         this.data.component = component;
+        this.data.props = {icon: "mdi-tooltip-text-outline"}
     }
     builder(node) {
 

@@ -7,11 +7,12 @@ export class FileComponent extends Rete.Component {
     constructor(){
         super("Dataset");
         this.data.component = component;
+        this.data.props = {icon:"mdi-file-table"}
     }
 
     builder(node) {
         var out = new Rete.Output('fileOut', "Dataset", datasetSocket);
-
+        
         return node
             .addControl(new FileControl(this.editor, 'fileOut'))
             .addOutput(out)

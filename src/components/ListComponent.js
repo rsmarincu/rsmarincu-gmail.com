@@ -8,6 +8,7 @@ export class ListComponent extends Rete.Component {
     constructor() {
       super("Select items");
       this.data.component = component;
+      this.data.props = {icon: "mdi-format-list-bulleted"}
 
     }
   

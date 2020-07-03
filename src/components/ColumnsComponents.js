@@ -8,6 +8,7 @@ export class ColumnsComponent extends Rete.Component {
     constructor(){
         super("Columns");
         this.data.component = component;
+        this.data.props = {icon:"mdi-view-column-outline"}
     }
 
     builder(node) {

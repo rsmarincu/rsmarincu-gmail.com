@@ -8,17 +8,19 @@ export class AddComponent extends Rete.Component {
     constructor(){
         super("Add");
         this.data.component = component;
+        this.data.props = { icon:"mdi-plus-thick" }
     }
 
     builder(node) {
         var inp1 = new Rete.Input('addInp1',"Number", numSocket, true);
         var inp2 = new Rete.Input('addInp2', "Number2", numSocket, true);
         var out = new Rete.Output('addOut', "Number", numSocket);
-
+        console.log(this.data.props)
         return node
             .addInput(inp1)
             .addInput(inp2)
             .addOutput(out);
+
     }
 
     async worker(node, inputs, outputs) {

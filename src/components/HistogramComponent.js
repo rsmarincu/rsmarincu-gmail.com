@@ -8,6 +8,7 @@ export class HistogramComponent extends Rete.Component {
     constructor() {
       super("Histogram");
       this.data.component = component;
+      this.data.props = {icon: "mdi-chart-histogram"}
     }
   
     builder(node){

@@ -7,6 +7,7 @@ export class DivideComponent extends Rete.Component {
     constructor(){
         super("Divide");
         this.data.component = component;
+        this.data.props = {icon:"mdi-division"}
 
     }
     builder(node) {

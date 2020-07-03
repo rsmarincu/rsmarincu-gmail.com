@@ -8,6 +8,7 @@ export class SubtractComponent extends Rete.Component {
     constructor(){
         super("Subtract");
         this.data.component = component;
+        this.data.props = {icon: "mdi-minus"}
     }
 
     builder(node) {
