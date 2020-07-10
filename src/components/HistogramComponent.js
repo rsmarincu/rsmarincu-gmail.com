@@ -8,6 +8,7 @@ export class HistogramComponent extends Rete.Component {
     constructor() {
       super("Histogram");
       this.data.component = component;
+      this.data.props = {icon: "mdi-chart-histogram"}
     }
   
     builder(node){
@@ -34,9 +35,7 @@ export class HistogramComponent extends Rete.Component {
         try {
             const resp = await Axios.post('https://fluxusml.azurewebsites.net/visualisation/histogram/', formData, {
                 responseType: 'blob'
-            })
-            console.log(resp)
-            
+            })            
             this.editor.nodes.find(n => n.id == node.id).controls.get('preview').setImageUrl(resp.data)
             outputs['result'] = URL.createObjectURL(resp.data)
         } catch (error){

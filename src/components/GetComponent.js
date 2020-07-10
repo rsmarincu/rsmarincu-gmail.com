@@ -8,6 +8,7 @@ export class GetComponent extends Rete.Component {
     constructor() {
       super("Get Request");
       this.data.component = component;
+      this.data.props = {icon: "mdi-web"}
 
     }
   

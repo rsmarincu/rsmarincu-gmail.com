@@ -7,6 +7,7 @@ export class NumComponent extends Rete.Component {
     constructor(){
         super("Number");
         this.data.component = component;
+        this.data.props = {icon: "mdi-numeric"}
     }
 
     builder(node) {

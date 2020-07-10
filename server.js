@@ -1,13 +1,21 @@
 let express = require('express');
+let history = require('connect-history-api-fallback');
 let path = require('path');
-let serverStatic = require('serve-static');
+let serveStatic = require('serve-static');
+let staticFileMiddleware = express.static(__dirname + "/dist")
 
 app = express();
-app.use(serverStatic(__dirname + '/dist'));
 
-let port = process.env.PORT || 5000;
-app.listen(port);
+app.use(staticFileMiddleware)
+app.use(history({
+  disableDotRule: true,
+  verbose: true
+}))
+app.use(staticFileMiddleware)
 
-console.log('server started on port: ' + port);
+var port = process.env.PORT || 5000;
+var hostname = 'localhost';
 
-
+app.listen(port, () => {
+   console.log(`Server running at http://${hostname}:${port}/`);
+ });

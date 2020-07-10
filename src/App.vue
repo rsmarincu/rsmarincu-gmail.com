@@ -1,27 +1,25 @@
 <template>
-    <div id="app">
-        <div id="rete" ref="rete" class="node-editor"></div>
-    </div>
+  <v-app class="grey lighten-4">
+    <Navbar />
+    <v-main class="mx-4 mb-4">
+      <router-view></router-view>
+    </v-main>
+    <Footer></Footer>
+  </v-app>
 </template>
 
 <script>
-import { createFlowEditor } from './editor.js'
+import Navbar from '@/vue-components/Navbar'
+import Footer from '@/vue-components/Footer'
 
 export default {
-    mounted(){
-        createFlowEditor();
-    }
-}
+  name: 'App',
+  components: {
+    Navbar,
+    Footer
+  },
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style scoped>
-    #app { 
-        width: 100%;
-        height: 100%;
-    }
-
-    #rete {
-        height: 100em;
-    }
-
-</style>

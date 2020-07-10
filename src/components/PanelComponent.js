@@ -9,10 +9,11 @@ export class PanelComponent extends Rete.Component {
     constructor() {
         super("Panel");
         this.data.component = component;
+        this.data.props = {icon: "mdi-tooltip-text-outline"}
     }
     builder(node) {
 
-        var inp = new Rete.Input('panelInput',"Text", textSocket);
+        var inp = new Rete.Input('panelInput',"Text", textSocket, true);
         var out = new Rete.Output('panelOut',"Text", textSocket);
 
         return node

@@ -1,7 +1,7 @@
 <template>
   <div class="node" :class="[selected(), node.name] | kebab">
     <div class="title">{{node.name}}</div>
-    <div class="col">
+    <div class="col_">
       <div class="output" v-for="output in outputs()" :key="output.key">
         <div class="output-title">{{output.name}}</div>
         <Socket v-socket:output="output" type="output" :socket="output.socket" :used="() => output.connections.length"></Socket>
@@ -56,7 +56,7 @@ $light-grey: #E0E6ED
     min-width: 160px
     &:hover
       background: $node-color
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
     &.active
       background: $color-active
     .title

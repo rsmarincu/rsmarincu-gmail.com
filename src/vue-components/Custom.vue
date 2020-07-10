@@ -1,37 +1,53 @@
 <template>
   <div class="node" :class="[selected(), node.name] | kebab">
-    <div class="title">{{node.name}}</div>
-    <div class="col">
+    <div class="title">
+      <v-row justify="center">
+      <v-icon large left color="accent" class="px-3">{{ icon }}</v-icon>
+      {{node.name}}
+      </v-row>
+
+    </div>
+    <div class="col_">
       <div class="output" v-for="output in outputs()" :key="output.key">
         <div class="output-title">{{output.name}}</div>
-        <Socket v-socket:output="output" type="output" :socket="output.socket" :used="() => output.connections.length"></Socket>
+        <Socket
+          v-socket:output="output"
+          type="output"
+          :socket="output.socket"
+          :used="() => output.connections.length"
+        ></Socket>
       </div>
     </div>
 
     <div class="control" v-bind:key="control.key" v-for="control in controls()" v-control="control"></div>
-    <div class="col">
-        <div class="input" v-for="input in inputs()" :key="input.key" style="text-align: left">
-        <Socket v-socket:input="input" type="input" :socket="input.socket" :used="() => input.connections.length"></Socket>
+    <div class="col_">
+      <div class="input" v-for="input in inputs()" :key="input.key" style="text-align: left">
+        <Socket
+          v-socket:input="input"
+          type="input"
+          :socket="input.socket"
+          :used="() => input.connections.length"
+        ></Socket>
         <div class="input-title" v-show="!input.showControl()">{{input.name}}</div>
         <div class="input-control" v-show="input.showControl()" v-control="input.control"></div>
+      </div>
     </div>
-    </div>
-
   </div>
 </template>
 
 <script>
-import VueRender from 'rete-vue-render-plugin';
+import VueRender from "rete-vue-render-plugin";
+
 export default {
   mixins: [VueRender.mixin],
   components: {
     Socket: VueRender.Socket
-  }
-}
+  },
+  props: ["icon"]
+};
 </script>
 
 <style scoped lang="sass">
-
 $node-color: white
 $color-active: darken($node-color,5%)
 $title-light: grey
@@ -44,8 +60,6 @@ $socket-margin: 10px
 $context-menu-round: 7px
 $light-grey: #E0E6ED
 $path-color: #0084FF
-
-
 .node-editor
   .node
     background: $node-color
@@ -58,10 +72,10 @@ $path-color: #0084FF
     height: auto
     padding-bottom: 6px
     box-sizing: content-box
-    min-width: 160px
+    min-width: 200px
     &:hover
       background: $node-color
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
     &.active
       background: $color-active
     .title
@@ -81,7 +95,7 @@ $path-color: #0084FF
     .content
       display: table
       width: 100%
-      .col
+      .col_
         display: table-cell
         white-space: nowrap
         &:not(:last-child)

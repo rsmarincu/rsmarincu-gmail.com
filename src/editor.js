@@ -15,9 +15,14 @@ import { TextComponent } from "./components/TextComponents";
 import { GetComponent } from "./components/GetComponent";
 import { PanelComponent } from "./components/PanelComponent";
 import { FileComponent } from "./components/FileComponent";
-import { GetLabelsComponent } from "./components/GetLabelsComponent";
+import { LabelsComponent } from "./components/LabelsComponent";
 import { ListComponent } from "./components/ListComponent";
 import { HistogramComponent } from "./components/HistogramComponent";
+import { MultiplyComponent } from "./components/MultiplyComponent";
+import { SubtractComponent } from "./components/SubtractComponent";
+import { ColumnsComponent } from "./components/ColumnsComponents";
+import Vuetify from "vuetify/lib";
+import store from "@/store"
 
 
 export async function createFlowEditor (){
@@ -25,19 +30,28 @@ export async function createFlowEditor (){
     var components = [
         new NumComponent(), 
         new AddComponent(), 
-        new DivideComponent(),
+        new DivideComponent(), 
+        new MultiplyComponent(),
+        new SubtractComponent(),
         new TextComponent(),  
         new GetComponent(),
         new PanelComponent(),
         new FileComponent(),
-        new GetLabelsComponent(),
+        new LabelsComponent(),
         new ListComponent(),
-        new HistogramComponent()
+        new HistogramComponent(),
+        new ColumnsComponent()
     ];
+    var reader = new FileReader()
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
     editor.use(ConnectionPlugin);
-    editor.use(VueRenderPlugin);    
+    editor.use(VueRenderPlugin, {
+        options: {
+            vuetify: new Vuetify(),
+            store
+        }
+    });    
     editor.use(AreaPlugin);
     editor.use(CommentPlugin);
     editor.use(HistoryPlugin);
@@ -58,20 +72,17 @@ export async function createFlowEditor (){
     var add = await components[1].createNode();
 
     var dataset = await new FileComponent().createNode()
-    var labels = await new GetLabelsComponent().createNode()
 
     n1.position = [80, 200];
     n2.position = [80, 400];
     add.position = [500, 240];
     dataset.position = [0,0]
-    labels.position = [100,150]
  
 
     editor.addNode(n1);
     editor.addNode(n2);
     editor.addNode(add);
     editor.addNode(dataset)
-    editor.addNode(labels)
 
 
     editor.connect(n1.outputs.get('num'), add.inputs.get('addInp1'));
@@ -82,9 +93,23 @@ export async function createFlowEditor (){
       console.log('process');
         await engine.abort();
         await engine.process(editor.toJSON());
+        store.commit("SAVE_EDITOR", editor)
     });
 
     editor.view.resize();
     AreaPlugin.zoomAt(editor);
+
+    store.subscribe((mutation, state) => {
+        if (mutation.type === "SET_FLUX") {
+            let file = state.flux_file
+            reader.readAsText(file, "UTF-8")
+            reader.onloadend = function () {
+                editor.fromJSON(JSON.parse(reader.result))
+                editor.trigger('process')
+            }
+        }
+    })
+
     editor.trigger('process');
+
 }

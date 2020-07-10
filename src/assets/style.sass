@@ -10,7 +10,8 @@ $path-color: #0084FF
 .node-editor
   background-size: $grid-size $grid-size
   background-image: linear-gradient(to right, $grid-color 1px, transparent 1px), linear-gradient(to bottom, $grid-color 1px, transparent 1px)
-  background-color:  lighten($grid-color, 5%)
+  background-color: lighten($grid-color, 5%)
+  background-repeat: repeat
   overflow: hidden
   *
     box-sizing: border-box
@@ -51,7 +52,6 @@ $path-color: #0084FF
     &.have-subitems
       padding-right: 16px
       &:after
-        content: '►'
         position: absolute
         opacity: 0.6
         right: 5px
@@ -70,4 +70,3 @@ $path-color: #0084FF
       border-radius: 0 0 $context-menu-round $context-menu-round
     &:hover
       background-color: lighten($node-color,4%)
-      

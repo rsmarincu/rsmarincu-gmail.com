@@ -1,17 +1,18 @@
 import Rete from 'rete'
 import { FileControl } from '../controls/FileControl'
 import { datasetSocket } from '../sockets'
-import component from '../vue-components/Custom.vue';
+import component from '../vue-components/FileComponent.vue';
 
 export class FileComponent extends Rete.Component {
     constructor(){
         super("Dataset");
         this.data.component = component;
+        this.data.props = {icon:"mdi-file-table"}
     }
 
     builder(node) {
         var out = new Rete.Output('fileOut', "Dataset", datasetSocket);
-
+        
         return node
             .addControl(new FileControl(this.editor, 'fileOut'))
             .addOutput(out)
