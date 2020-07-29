@@ -13,7 +13,7 @@ app.use(history({
 }))
 app.use(staticFileMiddleware)
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 5005;
 var hostname = 'localhost';
 
 app.listen(port, () => {
