@@ -33,7 +33,7 @@ export class ColumnsComponent extends Rete.Component {
             formData.append('file', file);
             formData.append('labels', labels)
             try {
-                const resp = await Axios.post('https://fluxusml.azurewebsites.net/pandas/columns/',
+                const resp = await Axios.post('/pandas/columns/',
                     formData,
                     {responseType:'blob'})
                 let output_file = new File([resp.data], "export.csv")
