@@ -28,7 +28,7 @@ export class SubtractComponent extends Rete.Component {
         let sum = null;
 
         try {
-            const resp = await Axios.post('20.50.107.91/math/subtract/', {
+            const resp = await Axios.post('/math/subtract/', {
                 as: n1,
                 bs: n2
             })

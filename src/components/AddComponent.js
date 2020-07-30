@@ -34,7 +34,7 @@ export class AddComponent extends Rete.Component {
                 let formData = new FormData();
                 formData.append('file', n1[0]);
                 formData.append('bs', n2);
-                const resp = await Axios.post('20.50.107.91/math/add/',
+                const resp = await Axios.post('/math/add/',
                                             formData, 
                                             {responseType: 'blob'})
                 sum = new File([resp.data], "export.csv")
@@ -45,7 +45,7 @@ export class AddComponent extends Rete.Component {
         else 
         {
             try {
-                const resp = await Axios.get('/math/add/', {
+                const resp = await Axios.post('/math/add/', {
                     as: n1,
                     bs: n2
                 })

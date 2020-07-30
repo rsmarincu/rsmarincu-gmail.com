@@ -28,7 +28,7 @@ export class MultiplyComponent extends Rete.Component {
         let sum = null;
 
         try {
-            const resp = await Axios.post('20.50.107.91/math/multiply/', {
+            const resp = await Axios.post('/math/multiply/', {
                 as: n1,
                 bs: n2
             })

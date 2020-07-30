@@ -27,7 +27,7 @@ export class DivideComponent extends Rete.Component {
         let sum = null;
 
         try {
-            const resp = await Axios.post('http://20.50.107.91/math/divide/', {
+            const resp = await Axios.post('/math/divide/', {
                 as: n1,
                 bs: n2
             })
