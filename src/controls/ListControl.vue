@@ -1,36 +1,28 @@
 <template>
   <div>
-    <multiselect 
-        v-model="value" 
-        :options="options"
-        :multiple="true"
-        :hide-selected="true"
-        :closeOnSelect="false"
-        @select="update"
-        @remove="update">
-    <template 
-        slot="selection" 
-        slot-scope="{ values, search, isOpen }">
-    <span 
-        class="multiselect__single" 
-        v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span>
-    </template>
-    </multiselect>
+    <v-col cols="12" sm="12">
+    <v-select
+        v-model="value"
+        :items="options"
+        label="Select"
+        multiple
+        chips
+        outlined
+        dense
+    ></v-select>
+    </v-col>
   </div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
 
 export default {
     props: ['readonly', 'emitter', 'ikey', 'getData', 'putData'],
-    components: {
-        Multiselect
-    },
     data () {
         return {
             value: [],
-            options: []
+            options: [],
+            selected: []
         }
     },
     methods:{
@@ -42,4 +34,6 @@ export default {
         }
 };
 </script>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
+<style>
+</style>
