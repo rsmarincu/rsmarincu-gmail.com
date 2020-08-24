@@ -22,7 +22,6 @@ export default {
         return {
             value: [],
             options: [],
-            selected: []
         }
     },
     methods:{

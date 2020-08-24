@@ -13,4 +13,8 @@ export class FileControl extends Rete.Control {
     setValue(val) {
       this.vueContext.value = val;
     }
+
+    getDid() {
+      return this.vueContext.did 
+    }
 }

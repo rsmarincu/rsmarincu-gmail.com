@@ -1,24 +1,46 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-file-input
-        id="to_upload"
-        ref="to_upload"
-        outlined
-        dense
-        chips
-        v-model="file"
-        label="Upload your dataset"
-      ></v-file-input>
-    </v-row>
-    <v-row justify="space-between">
-      <v-btn @click="handleFileUpload()" text>Upload</v-btn>
-    </v-row>
+    <v-container v-if="completed == false && inProgress == false">
+      <v-row justify="center">
+        <v-file-input
+          id="to_upload"
+          ref="to_upload"
+          outlined
+          dense
+          chips
+          v-model="file"
+          label="Upload your dataset"
+        ></v-file-input>
+      </v-row>
+      <v-row justify="space-between">
+        <v-btn @click="handleFileUpload()" text>Upload</v-btn>
+      </v-row>
+    </v-container>
+
+    <v-container v-if="inProgress == true && completed == false">
+      <div class="text-center">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="accent"
+        indeterminate
+      >
+      </v-progress-circular>
+      </div>
+    </v-container>
+
+    <v-container v-if="completed == true && inProgress == false">
+      <div class="text-center">
+        <h1>Done!</h1>
+      </div>
+    </v-container>
   </v-container>
+
 </template>
 
 <script>
 import Papa from 'papaparse'
+import Axios from 'axios';
 
 
 export default {
@@ -28,7 +50,10 @@ export default {
     return {
       value: null,
       file: null,
-      overlay: false
+      overlay: false,
+      did: null,
+      completed: false,
+      inProgress: false
     };
   },
   methods: {
@@ -68,13 +93,27 @@ export default {
         }
       })
     },
+
     handleFileUpload() {
         this.value = this.file;
         if (this.value != null){
-            this.parseDataset(this.value, this.populateData)
+
+          let formData = new FormData();
+          formData.append('file', this.value);
+          this.parseDataset(this.value, this.populateData)
+          this.inProgress = true
+          Axios.post('http://fluxusml.com/pandas/upload/', formData)
+          .then((resp) => {
+            const data = resp.data
+            console.log(data)
+            this.did = data.add_dataset.dataset.did
+            this.inProgress = false
+            this.completed = true
             this.update();
+
+          })  
         }    
-    },
+    }
 
   },
   mounted() {

@@ -1,5 +1,4 @@
 import Rete from 'rete'
-import { FileControl } from '../controls/FileControl'
 import { datasetSocket, numSocket } from '../sockets'
 import component from '../vue-components/FileComponent.vue';
 
@@ -11,11 +10,10 @@ export class FileComponent extends Rete.Component {
     }
 
     builder(node) {
-        let out = new Rete.Output('fileOut', "Dataset", datasetSocket);
+        let task = new Rete.Output('task', "Task", numSocket);
         let did = new Rete.Output('did', "Dataset ID", numSocket);
 
         return node
-            .addControl(new FileControl(this.editor, 'fileOut', true))
             .addOutput(out)
             .addOutput(did)
     }
