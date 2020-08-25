@@ -29,7 +29,7 @@ export class LabelsComponent extends Rete.Component {
             let formData = new FormData();
             formData.append('file', file);
             try {
-                const resp = await Axios.post('/pandas/labels/',
+                const resp = await Axios.post('http://fluxusml.com/pandas/labels/',
                     formData)
                 outputs['result'] = resp.data
             } catch (error){

@@ -9,6 +9,7 @@
           dense
           chips
           v-model="file"
+          @change="get_file"
           label="Upload your dataset"
         ></v-file-input>
       </v-row>
@@ -64,6 +65,11 @@ export default {
       this.emitter.trigger("process");
     },
 
+    get_file() {
+      this.value = this.file;
+      this.update()
+    },
+
     populateData(data, file){
       let headers = []
       let columns = Object.keys(data[0])
@@ -97,7 +103,6 @@ export default {
     handleFileUpload() {
         this.value = this.file;
         if (this.value != null){
-
           let formData = new FormData();
           formData.append('file', this.value);
           this.parseDataset(this.value, this.populateData)

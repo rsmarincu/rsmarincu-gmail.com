@@ -28,7 +28,7 @@ export class SubtractComponent extends Rete.Component {
         let sum = null;
 
         try {
-            const resp = await Axios.post('/math/subtract/', {
+            const resp = await Axios.post('http://fluxusml.com/math/subtract/', {
                 as: n1,
                 bs: n2
             })

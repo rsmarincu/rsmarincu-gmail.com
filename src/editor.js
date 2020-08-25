@@ -20,7 +20,10 @@ import { ListComponent } from "./components/ListComponent";
 import { HistogramComponent } from "./components/HistogramComponent";
 import { MultiplyComponent } from "./components/MultiplyComponent";
 import { SubtractComponent } from "./components/SubtractComponent";
-import { ColumnsComponent } from "./components/ColumnsComponents";
+import { ColumnsComponent } from "./components/ColumnsComponent";
+import { TasksComponent } from "./components/TasksComponent";
+import { PredictComponent } from "./components/PredictComponent";
+
 import Vuetify from "vuetify/lib";
 import store from "@/store"
 
@@ -40,7 +43,9 @@ export async function createFlowEditor (){
         new LabelsComponent(),
         new ListComponent(),
         new HistogramComponent(),
-        new ColumnsComponent()
+        new ColumnsComponent(),
+        new TasksComponent(),
+        new PredictComponent()
     ];
     var reader = new FileReader()
     
@@ -67,26 +72,14 @@ export async function createFlowEditor (){
         engine.register(c);
     });
 
-    var n1 = await components[0].createNode({num: 2});
-    var n2 = await components[0].createNode({num: 0});
-    var add = await components[1].createNode();
 
     var dataset = await new FileComponent().createNode()
 
-    n1.position = [80, 200];
-    n2.position = [80, 400];
-    add.position = [500, 240];
+
     dataset.position = [0,0]
  
 
-    editor.addNode(n1);
-    editor.addNode(n2);
-    editor.addNode(add);
     editor.addNode(dataset)
-
-
-    editor.connect(n1.outputs.get('num'), add.inputs.get('addInp1'));
-    editor.connect(n2.outputs.get('num'), add.inputs.get('addInp2'));
 
 
     editor.on('process nodecreated noderemoved connectioncreated connectionremoved', async () => {

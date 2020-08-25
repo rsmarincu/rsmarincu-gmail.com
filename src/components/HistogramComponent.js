@@ -33,7 +33,7 @@ export class HistogramComponent extends Rete.Component {
         formData.append('x-axis', x_axis)
 
         try {
-            const resp = await Axios.post('/visualisation/histogram/', formData, {
+            const resp = await Axios.post('http://fluxusml.com/visualisation/histogram/', formData, {
                 responseType: 'blob'
             })            
             this.editor.nodes.find(n => n.id == node.id).controls.get('preview').setImageUrl(resp.data)

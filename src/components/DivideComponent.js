@@ -27,7 +27,7 @@ export class DivideComponent extends Rete.Component {
         let sum = null;
 
         try {
-            const resp = await Axios.post('/math/divide/', {
+            const resp = await Axios.post('http://fluxusml.com/math/divide/', {
                 as: n1,
                 bs: n2
             })
