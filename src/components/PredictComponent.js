@@ -45,39 +45,36 @@ export class PredictComponent extends Rete.Component {
         let task = inputs['ttid'][0]
         let target = inputs['target'].flat()[0]
         let predict = inputs['predict'][0]
+        predict = JSON.parse(predict)
         let session_id = getRandomInt(1, 100000)
         let ttid = null
 
         if (task == 'Predict') {
-            ttid = 2
+            ttid = 1
         }
         else  {
-            ttid = 1
+            ttid = 2
         }
 
         let to_check = {
             'did':did,
             'ttid':ttid,
             'target':target,
-            'predict':JSON.parse(predict),
+            'predict':predict,
             'session_id': session_id
         }
 
         console.log(to_check)
 
-        let formData = new FormData();
 
         if (checkForEmpty(to_check)) {
-            formData.append('did', did);
-            formData.append('tid', ttid);
-            formData.append('target', target);
-            formData.append('predict', predict);
-            formData.append('session_id', session_id);
+
             console.log("Posting")
             
             try {
-                const resp = await Axios.post('http://fluxusml.com/compute/load/', formData)
-                outputs['result'] = resp.data
+                const resp = await Axios.post('http://fluxusml/compute/load/', to_check)
+                outputs['result'] = JSON.stringify(resp.data)
+                console.log(resp.data)
             } catch (error){
                 outputs['result'] = to_check
 
