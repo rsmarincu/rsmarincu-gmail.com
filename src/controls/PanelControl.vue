@@ -1,9 +1,11 @@
 <template>
-    <textarea
-    :readonly="readonly" 
-    :value="value"
-    @input="change($event)" 
-    />
+    <v-textarea
+        auto-grow
+        rows=22
+        label="Text"
+        :value="value"  
+        @input="change($event)" 
+    ></v-textarea>
 </template>
 
 <script>

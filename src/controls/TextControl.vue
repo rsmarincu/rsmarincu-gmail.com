@@ -38,7 +38,7 @@ $light-grey: #E0E6ED
 
 textarea 
     height: 100%
-    width: 100%
+    width: 400px
     border: 1px solid $light-grey
     border-radius: 5px
 
