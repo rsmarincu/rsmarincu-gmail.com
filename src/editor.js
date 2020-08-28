@@ -23,6 +23,7 @@ import { SubtractComponent } from "./components/SubtractComponent";
 import { ColumnsComponent } from "./components/ColumnsComponent";
 import { TasksComponent } from "./components/TasksComponent";
 import { PredictComponent } from "./components/PredictComponent";
+import { SelectDatasetComponent } from "./components/SelectDatasetComponent";
 
 import Vuetify from "vuetify/lib";
 import store from "@/store"
@@ -45,7 +46,8 @@ export async function createFlowEditor (){
         new HistogramComponent(),
         new ColumnsComponent(),
         new TasksComponent(),
-        new PredictComponent()
+        new PredictComponent(),
+        new SelectDatasetComponent()
     ];
     var reader = new FileReader()
     
@@ -83,7 +85,6 @@ export async function createFlowEditor (){
 
 
     editor.on('process nodecreated noderemoved connectioncreated connectionremoved', async () => {
-      console.log('process');
         await engine.abort();
         await engine.process(editor.toJSON());
         store.commit("SAVE_EDITOR", editor)
