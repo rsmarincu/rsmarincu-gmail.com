@@ -22,13 +22,17 @@ export default {
         return {
             value: null,
             options: [],
+            paused: false
         }
     },
     methods:{
         update() {
-            if (this.ikey)
-                this.putData(this.ikey, this.value)
-            this.emitter.trigger('process');
+            if (this.value == null) {
+                if (this.ikey)
+                    this.putData(this.ikey, this.value)
+                this.emitter.trigger('process');
+                this.paused = false
+            }
         }
     },
     mounted() {
@@ -37,6 +41,7 @@ export default {
                 console.log("Got datasets")
                 this.options = resp.data
             } )
+        
         this.update()
         },
 };

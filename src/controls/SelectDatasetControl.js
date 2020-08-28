@@ -17,4 +17,12 @@ export class SelectDatasetControl extends Rete.Control {
     getValue() {
         return this.vueContext.value;
       }
+
+    isPaused() {
+      return this.vueContext.paused
+    }
+
+    setPaused(paused) {
+      this.vueContext.paused = paused
+    }
 }

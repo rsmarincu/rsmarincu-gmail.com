@@ -24,6 +24,7 @@ export class LabelsComponent extends Rete.Component {
     async worker(node, inputs, outputs) {
      
         var file = inputs['fileIn'].length?inputs['fileIn'][0]:node.data.fileIn;
+        console.log(file)
         if (file)
         {
             let formData = new FormData();
