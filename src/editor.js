@@ -24,10 +24,13 @@ import { ColumnsComponent } from "./components/ColumnsComponent";
 import { TasksComponent } from "./components/TasksComponent";
 import { PredictComponent } from "./components/PredictComponent";
 import { SelectDatasetComponent } from "./components/SelectDatasetComponent";
+import { RowComponent } from "./components/RowComponent";
+import { DropColumnComponent } from "./components/DropColumnComponent";
 
 import Vuetify from "vuetify/lib";
 import store from "@/store"
 
+import Axios from 'axios';
 
 export async function createFlowEditor (){
     var container = document.querySelector('#rete');
@@ -47,7 +50,9 @@ export async function createFlowEditor (){
         new ColumnsComponent(),
         new TasksComponent(),
         new PredictComponent(),
-        new SelectDatasetComponent()
+        new SelectDatasetComponent(),
+        new RowComponent(),
+        new DropColumnComponent()
     ];
     var reader = new FileReader()
     
@@ -104,6 +109,9 @@ export async function createFlowEditor (){
         }
     })
 
+    let resp = await Axios.get("http://fluxusml.com/pandas/datasets/")
+    let openml_datasets = resp.data
+    store.commit("LOAD_DATASETS", openml_datasets)
+    console.log(resp.data)
     editor.trigger('process');
-
 }

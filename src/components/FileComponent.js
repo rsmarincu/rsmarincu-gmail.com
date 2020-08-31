@@ -22,7 +22,6 @@ export class FileComponent extends Rete.Component {
 
     worker(node, inputs, outputs) {     
         outputs['fileOut'] = node.data.fileOut;
-        console.log(node.data.fileOut)
         let did = this.editor.nodes.find(n => n.id == node.id).controls.get('fileOut').getDid()
         outputs['did'] = did
     }

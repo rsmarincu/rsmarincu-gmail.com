@@ -8,7 +8,8 @@ export default new Vuex.Store({
         datasets: [],
         flux_file: null,
         editor: null,
-        loading: false
+        loading: false,
+        openml_datasets: []
     },
     getters:{
         datasets: state => {
@@ -25,6 +26,10 @@ export default new Vuex.Store({
 
         editor: state => {
             return state.editor.toJSON()
+        },
+
+        openml_datasets: state => {
+            return state.openml_datasets
         }
 
     },
@@ -46,6 +51,10 @@ export default new Vuex.Store({
 
         SET_FLUX(state, file) {
             state.flux_file = file
+        },
+
+        LOAD_DATASETS(state, to_load) {
+            state.openml_datasets = to_load
         }
 
 

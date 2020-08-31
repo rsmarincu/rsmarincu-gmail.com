@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import Axios from 'axios';
 
 export default {
     props: ['readonly', 'emitter', 'ikey', 'getData', 'putData'],
@@ -27,21 +26,16 @@ export default {
     },
     methods:{
         update() {
-            if (this.value == null) {
-                if (this.ikey)
-                    this.putData(this.ikey, this.value)
-                this.emitter.trigger('process');
-                this.paused = false
-            }
+            
+            if (this.ikey)
+                this.putData(this.ikey, this.value)
+            this.emitter.trigger('process');
+            this.paused = false
+            
         }
     },
     mounted() {
-        Axios.get("http://fluxusml.com/pandas/datasets/")
-            .then((resp) => {
-                console.log("Got datasets")
-                this.options = resp.data
-            } )
-        
+        this.options = this.$store.getters.openml_datasets
         this.update()
         },
 };

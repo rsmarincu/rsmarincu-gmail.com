@@ -17,30 +17,34 @@ export class SelectDatasetComponent extends Rete.Component {
       let did = new Rete.Output("current_did", "Dataset ID", numSocket)
 
       return node
-        .addControl(new SelectDatasetControl(this.editor, 'selector'))
         .addOutput(dataset)
         .addOutput(did)
+        .addControl(new SelectDatasetControl(this.editor, 'selector'))
       }
 
-    async worker(node, outputs) {
+    async worker(node, inputs, outputs) {
       
       let did_ = this.editor.nodes.find(n => n.id == node.id).controls.get('selector').getValue()
 
       if (Number.isInteger(did_)){
-        let dataset = await Axios.get("http://fluxusml.com/pandas/load/", 
-        { 
-          params:{
-            "did":did_
-          },
-          responseType:'blob'
-        })
-        let output_file = new File([dataset.data], "export.csv")
-        
-        outputs['selected'] = output_file
-        outputs['current_did'] = did_
-        this.editor.nodes.find(n => n.id == node.id).controls.get('selector').setPaused(true)
+        console.log("Requesting")
+        try{
+          const resp = await Axios.get("http://fluxusml.com/pandas/load/", 
+          { 
+            params:{
+              "did":did_
+            },
+            responseType:'blob'
+          })
+          let output_file = new File([resp.data], "export.csv")
+          
+          outputs['selected'] = output_file
+          outputs['current_did'] = did_
+        }
+        catch (error) {
+          outputs['selected'] = null
+          outputs['current_did'] = null
+        }
       }
-
-      console.log(outputs['selected'], outputs['current_did'])
     }
 }

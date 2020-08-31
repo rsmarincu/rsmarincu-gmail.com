@@ -31,11 +31,18 @@ export class ColumnsComponent extends Rete.Component {
         {
             let formData = new FormData();
             formData.append('file', file);
-            formData.append('labels', labels)
+
+            for (let i=0; i<labels.length; i++) {
+                formData.append('labels', labels[i])
+            }
+            
             try {
                 const resp = await Axios.post('http://fluxusml.com/pandas/columns/',
                     formData,
-                    {responseType:'blob'})
+                    {
+                        responseType:'blob',
+                    }
+                )
                 let output_file = new File([resp.data], "export.csv")
                 outputs['result'] = output_file
             } catch (error){

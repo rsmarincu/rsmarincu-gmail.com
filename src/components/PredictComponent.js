@@ -49,7 +49,10 @@ export class PredictComponent extends Rete.Component {
         let task = inputs['ttid'][0]
         let target = inputs['target'].flat()[0]
         let predict = inputs['predict'][0]
-        predict = JSON.parse(predict)
+        if (typeof predict === "string") {
+            predict = JSON.stringify(predict)
+        }
+
         let session_id = getRandomInt(1, 100000)
         let ttid = null
 
