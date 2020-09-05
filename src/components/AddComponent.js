@@ -8,7 +8,10 @@ export class AddComponent extends Rete.Component {
     constructor(){
         super("Add");
         this.data.component = component;
-        this.data.props = { icon:"mdi-plus-thick" }
+        this.data.props = { 
+            icon:"mdi-plus-thick",
+            description:"This node performs the addition operation. It can be used with a list of numbers, two number or one number and a list of numbers."
+         }
     }
 
     builder(node) {

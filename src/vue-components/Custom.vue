@@ -4,6 +4,19 @@
       <v-row justify="center">
       <v-icon large left color="accent" class="px-3">{{ icon }}</v-icon>
       {{node.name}}
+      <v-tooltip 
+      top
+      max-width=500
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon 
+            v-bind="attrs"
+            v-on="on"
+            right
+          >mdi-information-outline</v-icon>
+        </template>
+      <p>{{ description }}</p>
+    </v-tooltip>
       </v-row>
 
     </div>
@@ -43,7 +56,7 @@ export default {
   components: {
     Socket: VueRender.Socket
   },
-  props: ["icon"]
+  props: ["icon", "description"]
 };
 </script>
 
