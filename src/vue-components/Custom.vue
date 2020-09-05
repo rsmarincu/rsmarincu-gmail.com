@@ -15,7 +15,7 @@
             right
           >mdi-information-outline</v-icon>
         </template>
-      <p>{{ description }}</p>
+      <h3>{{ description }}</h3>
     </v-tooltip>
       </v-row>
 

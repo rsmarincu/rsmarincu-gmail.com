@@ -5,10 +5,9 @@
         v-model="value"
         :items="options"
         label="Select"
-        multiple
         chips
-        outlined
         dense
+        multiple
     ></v-select>
     </v-col>
   </div>
@@ -35,4 +34,4 @@ export default {
 </script>
 
 <style>
-</style>
+</style>v
