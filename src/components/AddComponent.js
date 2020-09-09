@@ -3,7 +3,6 @@ import { numSocket } from '../sockets'
 import component from '../vue-components/Custom.vue';
 import Axios from 'axios';
 
-
 export class AddComponent extends Rete.Component {
     constructor(){
         super("Add");
@@ -37,7 +36,7 @@ export class AddComponent extends Rete.Component {
                 let formData = new FormData();
                 formData.append('file', n1[0]);
                 formData.append('bs', n2);
-                const resp = await Axios.post('/math/add/',
+                const resp = await Axios.post('http://fluxusml.com/math/add/',
                                             formData, 
                                             {responseType: 'blob'})
                 sum = new File([resp.data], "export.csv")
@@ -48,11 +47,12 @@ export class AddComponent extends Rete.Component {
         else 
         {
             try {
-                const resp = await Axios.post('/math/add/', {
+                const resp = await Axios.post('http://fluxusml.com/math/add/', {
                     as: n1,
                     bs: n2
                 })
                 sum = resp.data
+                console.log(sum)
             } catch (error){
                 outputs['addOut'] = null
             }

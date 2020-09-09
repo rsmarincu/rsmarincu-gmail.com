@@ -49,6 +49,7 @@ export class PredictComponent extends Rete.Component {
         let task = inputs['ttid'][0]
         let target = inputs['target'].flat()[0]
         let predict = inputs['predict'][0]
+
         if (typeof predict === "string") {
             predict = JSON.stringify(predict)
         }
@@ -57,18 +58,18 @@ export class PredictComponent extends Rete.Component {
         let ttid = null
 
         if (task == 'Predict') {
-            ttid = 1
+            ttid = 2
         }
         else  {
-            ttid = 2
+            ttid = 1
         }
 
         let to_check = {
             'did':did,
             'ttid':ttid,
             'target':target,
-            'predict':predict,
-            'session_id': session_id
+            'session_id': session_id,
+            'predict':predict
         }
 
         console.log(to_check)
@@ -78,9 +79,21 @@ export class PredictComponent extends Rete.Component {
         if (checkForEmpty(to_check) && pause) {
 
             console.log("Posting")
-            
+            let formData = new FormData()
             try {
-                const resp = await Axios.post('http://fluxusml.com/compute/load/', to_check)
+                formData.append('predict_file', predict)
+                formData.append('did', did)
+                formData.append('ttid', ttid)
+                formData.append('target', target)
+                formData.append('session_id', session_id)
+                formData.append('predict', predict)
+
+
+                const resp = await Axios.post('http://fluxusml.com/compute/', formData, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                  }
+                })
                 outputs['result'] = JSON.stringify(resp.data)
                 console.log(resp.data)
             } catch (error){

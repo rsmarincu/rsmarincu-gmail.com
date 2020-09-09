@@ -28,7 +28,7 @@ export class MultiplyComponent extends Rete.Component {
         let sum = null;
 
         try {
-            const resp = await Axios.post('http://fluxusml.com/math/multiply/', {
+            const resp = await Axios.get('http://fluxusml.com/math/multiply/', {
                 as: n1,
                 bs: n2
             })
