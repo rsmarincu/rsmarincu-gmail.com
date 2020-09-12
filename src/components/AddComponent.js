@@ -9,7 +9,7 @@ export class AddComponent extends Rete.Component {
         this.data.component = component;
         this.data.props = { 
             icon:"mdi-plus-thick",
-            description:"This node performs the addition operation. It can be used with a list of numbers, two number or one number and a list of numbers."
+            description:"This node performs the addition operation. \n It can be used with a list of numbers, two number or one number and a list of numbers."
          }
     }
 

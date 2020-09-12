@@ -6,7 +6,7 @@
       {{node.name}}
       <v-tooltip 
       top
-      max-width=500
+      max-width=510
       >
         <template v-slot:activator="{ on, attrs }">
           <v-icon 
