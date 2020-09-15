@@ -5,7 +5,7 @@ import component from '../vue-components/FileComponent.vue';
 
 export class FileComponent extends Rete.Component {
     constructor(){
-        super("Dataset");
+        super("Upload Dataset");
         this.data.component = component;
         this.data.props = {icon:"mdi-file-table"}
     }
