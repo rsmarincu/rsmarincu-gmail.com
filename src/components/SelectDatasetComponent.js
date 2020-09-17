@@ -29,7 +29,7 @@ function parseDataset(file, callback){
   console.log(file)
   Papa.parse(file, {
       download: true,
-      dynamicTyping: true,
+      dynamicTyping: false,
       header: true,
       complete: function(results) {
       callback(results.data, file)
