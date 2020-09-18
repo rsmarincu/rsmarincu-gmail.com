@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fluxus
+  name: fluxus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fluxus
+  template:
+    metadata:
+      labels:
+        app: fluxus
+    spec:
+      containers:
+      - name: fluxus
+        image: fluxuscontainerregistry.azurecr.io/fluxus:latest
+        ports:
+        - containerPort: 5005
+        imagePullPolicy: Always
+      restartPolicy: Always
